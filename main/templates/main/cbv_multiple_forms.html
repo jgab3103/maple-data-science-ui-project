@@ -1,0 +1,176 @@
+
+
+{% extends "main/base.html" %}
+
+{% load static %}
+
+
+
+{% block metadata %}
+
+<!-- MODAL 1 FOR ADDING NOTES  -->
+<div id="modal1" class="modal">
+   <div class="modal-content">
+     <h5>Add a new note</h5>
+     <form action="/maple/question/submit" method="post">
+        {% csrf_token %}
+        {{ note_form }}
+         <button class="btn waves-effect waves-light" type="submit" name="action">Add note
+         <i class="material-icons right">send</i>
+       </button>
+     </form>
+   </div>
+ </div>
+
+ <!-- MODAL 2 FOR ADDING TASKS -->
+
+ <div id="modal2" class="modal">
+    <div class="modal-content">
+      <h5>Add a new task</h5>
+      <form action="/maple/answer/submit" method="post">{% csrf_token %}
+    {{ task_form }}
+          <button class="btn waves-effect waves-light" type="submit" name="action">Add note
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+    </div>
+
+
+    <!-- ######################################################################################################## -->
+
+<div class = "container">
+  {% if sucess %}
+    <h1>Your request has been submitted</h1>
+  {% else %}
+
+  {% endif %}
+
+  <div class = "row">
+    <div class = "col s12 m12">
+      <h5>Request {{project.id}}</h5>
+
+    </div>
+    <div class="row">
+      <div class="col m6 s6">
+        <strong>Current request manager:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.request_creator.first_name}} {{project.request_creator.last_name}}
+      </div>
+      <div class="col m6 s6">
+        <strong>Request contact:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.requestor_contact_name}}
+      </div>
+      <div class="col m6 s6">
+        <strong>Type of data requested:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.data_type}}
+      </div>
+      <div class="col m6 s6">
+        <strong>Date received:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.date_received}}
+      </div>
+      <div class="col m6 s6">
+        <strong>Current status:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.current_status}}
+      </div>
+      <div class="col m6 s6">
+        <strong>Related documentation:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.related_documentation}}
+      </div>
+      <div class="col m6 s6">
+        <strong>Date due:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.date_due}}
+      </div>
+      <div class="col s12 m12">
+        <br/><strong>Summary detail</strong>
+      </div>
+      <div class="col s12 m12">
+        {{project.detail}}
+        </div>
+      </div>
+
+    <div class = "row">
+      <div class = "col s12 m12">
+        <strong>Notes and Tasks</strong>
+      </div>
+      <div class = "col s12 m12">
+         <strong style="font-size: 12px">
+           <a class = "modal-trigger orange-text text-darken-4" href="#modal1">Add note</a>
+         </strong> |
+
+         <strong style="font-size: 12px">
+           <a class = "modal-trigger orange-text text-darken-4" href="#modal2">Add task</a>
+         </strong> |
+         <strong style="font-size: 12px">
+           <a class = "modal-trigger orange-text text-darken-4" href="#modal2">Change request status</a>
+         </strong>
+         <br/>
+        </div>
+      </div>
+
+<div class = "row">
+  <ul class="collection">
+    {% if project.noteortask_set.all %}
+     {% for obj in project.noteortask_set.all  %}
+      <li class="collection-item">
+       <strong class="grey-text text-darken-2" style="font-size: 11px">
+         {{ obj.created_by.first_name}} {{obj.created_by.last_name}} added a {{obj.type }} on {{ obj.date_and_time_created}}
+       </strong><br/>
+       <div>{{obj.detail}}</div>
+      {% if obj.type == "Task" %}
+      <strong class="grey-text text-darken-2" style="font-size: 11px">Allocated to {{ obj.allocated_to.first_name}} {{obj.allocated_to.last_name}}, due by {{ obj.date_due}}, and
+        {% if obj.task_completed == True %} has been completed. {% else %} not yet completed. {% endif %}
+      </strong><br/><br/>
+        {% if user.is_superuser %}
+     <form action="#">
+    <div>
+      <label>
+        <input type="checkbox" />
+        <span class="grey-text text-darken-2" style="font-size: 11px">  Set this task to completed</span>
+      </label>
+    </div>
+    </form>
+ {% endif %}
+
+          {% endif %}
+
+
+
+      </li>
+  {% endfor %}
+  {% else %}
+  <li class="collection-item">
+     <div>No tasks have been added to this request or project</div>
+  </li>
+ {% endif %}
+
+    </ul>
+
+</div>
+
+
+
+    <div class = "col s12 m12">
+
+<a href = "/maple/data-requests"class="#"><i style="color:#ff3d00;" class="material-icons left medium">arrow_back</i></a>
+    </div>
+
+  </div>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+
+<div class="container">
+
+<div>
+<br/><br/>
+<div class="row">
+  <div class="col s4 m4">
+  </div>
+  <div class="col s4 m4">
+    Thank you for submitting this request for data custodian approval. {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">
+        {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+    {% endif %} You can view the status of all requests <a href="/maple/data-requests">here</a>. Requests are usually completed within 5-10 working days.
+  </div>
+  <div class="col s4 m4">
+  </div>
+</div>
+</div>
+
+{% endblock %}

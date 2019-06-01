@@ -1,0 +1,143 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block about_page %}
+
+  <div class="container">
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">
+        {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="row">
+
+    </div>
+    <div class = "row">
+      <div class = "col m8 s8">
+        <h5>Maple: A UI for Data Science</h5>
+        <br/>
+          <div class = "thin">
+            Welcome to the Maple demo site. <br/><br/>To log in and explore this site as a staff user, use <code>'testuser'</code> and <code>'testpassword'</code>.
+            </div>
+            <br/>
+            <div class="light">Maple is a user interface focused web application to manage data science and analytics in organisations. Its sets out to solve the problem of tracking data assset, data elements users and user roles, and analytics work streams. It aim to increase the productivity for data scientists while ensuring transparency and security for modern data governance.
+              <br/><br/>The demo version of this application application includes only fake user names and profiles, along with sample datasets taken from <a href="#">Kaggle</a>. It  and sample requests and projects. The data in maple is reset periodically.
+              <br/>
+              <br/>
+              The feature set of Maple includes:
+            </div>
+            <br/>
+            <div>
+              <h6><a href="/maple/metadata">Metadata repository</a></h6>
+              <div class = "thin">
+                Track data assets, data users, and user roles. The backend also holds all data element information, and masterdata and reference data, and can be used for data lineage tracking.
+              </div>
+            </div>
+            <div>
+              <br/>
+              <h6><a href="/maple/data-projects">Research and reporting streams</a></h6>
+              <div class = "thin">
+                Track streams of work for research and reporting teams, and link this to data use and approval tracking.
+              </div>
+            </div>
+
+            <div>
+              <br/>
+              <h6><a href="/maple/data-requests">Data request management</a></h6>
+              <div class = "thin">
+                Manage ad-hoc data requests with task allocation and notes, and track real-time metrics through application Data APIs
+              </div>
+            </div>
+
+            <div>
+              <br/>
+              <h6><a href="/maple/apps-and-notebooks">Analytics server integration</a></h6>
+              <div class = "thin">
+                Inegration to an R Shiny Server or R Connect server to host R Apps and Jupyter notebooks
+              </div>
+            </div>
+
+            <div>
+              <br/>
+              <h6><a href="/maple/data-api">API first design</a></h6>
+              <div class = "thin">
+                Access all application data via REST APIs using Django Rest Framewoork or Swagger.
+              </div>
+            </div>
+
+            <div>
+              <br/>
+              <h6><a href="/maple/resources">News and resources</a></h6>
+              <div class = "thin">
+                Manage staff updates and alerts, and provide, and static information for staff accessing data, or undertaking research and analytics.
+              </div>
+            </div>
+
+            <div>
+
+            </div>
+
+            <div>
+
+            </div>
+            <br/>
+            <h6>Architecture Overview</h6>
+            <div class="light">
+              Maple is opinionated as a UI, but it aims to be highly flexible as an approach to analytics architecture. A high level overview of the architecture I usually use can be seen below and has the following components: a Django web application; an R Analytics Server that can serve R and Python notebooks, R function APIs, R Shiny applications; and a web API/microservices to manage the management of data and logging of data use.
+              <br/><br/>The Maple project is well suited to scaleability. This version is being hosted Digital Ocean deployments, and is well suited to both single instance deployments with limited data assets, to cloud deployments using microservices such as Kubernetes.
+            </div>
+            <br/>
+            <img style = "height: 600px;" src = "{% static 'main/img/maple-arch.png' %}"/>
+            <div class = "light">
+
+            </div>
+            <br/>
+
+      <div class = "light">
+          <br/>
+          For full documentation and code, or to get involved in this project, visit the project wiki:
+          <br/>
+         <a href="https://github.com/jgab3103/maple-project/wiki">https://github.com/jgab3103/maple-project/wiki</a><br/>
+         <br/>
+        <div>Jamie Gabriel </div>
+        <div><a href="#">La Data Vita</a></div>
+         <br/>
+         </div>
+
+      </div>
+      <div class = "col m4 s4">
+
+ <div class = "row">
+        <ul class="collection with-header">
+                <li class="collection-header"><h4>News</h4></li>
+                {% for item in news_items %}
+                  <li class="collection-item">
+                    <a href="/maple/news/{{ item.id }}/">{{item.date_added}}<br/>{{ item.news_text |  truncatewords:"10" }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+      </div>
+      <div class = "row">
+        <a href="#"><div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+
+            <h4 class = "center-align thin">Coders Meetup Group</h4>
+            <div class = "center-align thin">Always a good idea to set up a coders meetup group using Slack, MS Team, Confluence, whatever.</div>
+          </div>
+
+        </div></a>
+
+      </div>
+
+</div>
+    </div>
+
+
+
+
+{% endblock %}

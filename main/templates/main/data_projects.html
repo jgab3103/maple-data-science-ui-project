@@ -1,0 +1,124 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block metadata %}
+
+
+
+<div class="containesr">
+
+
+
+<div class = "row">
+  <div class = "col s1 m1">
+    </div>
+  <div class = "col s10 m10 right-align">
+       {% if data_projects.has_other_pages %}
+    <ul class="pagination">
+
+            {% if data_projects.has_previous %}
+                <li><a href="?page=1"><i class="material-icons">chevron_left</i></a></li>
+                {% else %}
+                <li class="disabled"><i class="disabled-gray material-icons">chevron_left</i></li>
+            {% endif %}
+
+
+            {% for i in data_projects.paginator.page_range %}
+              {% if data_projects.number == i %}
+                <li class="move-down active">&nbsp;{{ i }}&nbsp;</li>
+              {% else %}
+                <li><a href="/maple/data-projects?page={{i}}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if data_projects.has_next %}
+                <li><a href="?page={{ data_projects.paginator.num_pages }}"><i class="disabled-gray material-icons">chevron_right</i></a></li>
+                {% else %}
+                <li class="disabled"><i class="disabled-gray material-icons">chevron_right</i></li>
+
+            {% endif %}
+
+    </ul>
+{% endif %}
+  </div>
+
+</div>
+
+
+<div class="row">
+
+
+  <div class="col s1 m1">
+
+  </div>
+
+
+  <div class="col s10 m10">
+
+    <input id="myInput" placeholder="Search" id="first_name" type="text" class="validate">
+    <ul class="collection">
+      <li class="collection-item">
+        <div class="row">
+        <div class="thin col s2 m2"><strong class = "thin">Stream</strong></div>
+        <div class="thin col s4 m4"><strong class = "thin">Summary</strong></div>
+        <div class="thin col s2 m2"><strong class="thin">Research type</strong></div>
+        <div class="thin col s1 m1"><strong class="thin">Related documentation</strong></div>
+        <div class="thin col s1 m1"><strong class="thin">Start date</strong></div>
+        <div class="thin col s1 m1"><strong class = "thin">End date</strong></div>
+
+  </li>
+
+  </ul>
+
+<ul id="bob" class="collection">
+    {% for obj in data_projects %}
+
+
+
+    <li class="collection-item">
+      <div class="row">
+      <div class="col s2 m2">{{ obj.title}}</div>
+      <div class="col s4 m4">{{ obj.summary | truncatewords:15 | striptags}}</div>
+      <div class="col s2 m2">{{ obj.research_type}}</div>
+      <div class="col s1 m1">{{ obj.related_documentation_location}}</div>
+      <div class="col s1 m1">{{ obj.start_date }}</div>
+      <div class="col s1 m1">{{ obj.end_date}}</div>
+
+      <div class="col s1 m1">
+
+
+        <a href =  "/maple/data-projects/{{obj.id}}"  class="#"><i style="color:#ff3d00;" class="material-icons small">arrow_forward</i></a>
+            <!-- <div style="font-size:10px;"><strong>{{obj.projecttask_set.all | length}} task{{obj.projecttask_set.all | length | pluralize}} outstanding</strong></div>
+            <div style="font-size:10px;"><strong>{{obj.projectnote_set.all | length}} note{{obj.projectnote_set.all | length | pluralize}} </strong></div> -->
+      </div>
+</li>
+
+    {% endfor %}
+
+  </ul>
+
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<ul id="bob" class="collection">
+
+
+ </ul>
+
+ </div>
+{% endblock %}

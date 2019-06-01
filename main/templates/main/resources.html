@@ -1,0 +1,136 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="containser">
+
+<div class="row">
+
+</div>
+
+<div class="row">
+  <div class="col m3 s3">
+    <ul class="collection">
+
+        <li class="collection-item"><strong class = "thin">Research and Data Governance</strong></li>
+        <li class="collection-item">&emsp; <a href="#">Governance framework</a></li>
+        <li class="collection-item">&emsp; <a href="#">Ethics and research framework</a></li>
+        <li class="collection-item">&emsp; <a href="#">Guidelines for internal analytics</a></li>
+        <li class="collection-item">&emsp; <a href="#">Guidelines for research publications</a></li>
+
+         <li class="collection-item"><strong class="thin">Accessing data</strong></li>
+         <li class="collection-item">&emsp; <a href="#">Getting access</a></li>
+         <li class="collection-item">&emsp; <a href="#">Accessing data via ODBC</a></li>
+         <li class="collection-item">&emsp; <a href="#">Acessing data via a REST API</a></li>
+         <li class="collection-item">&emsp; <a href="#">Requesting copies of data</a></li>
+
+         <li class="collection-item"><strong class="thin">Coding resources</strong></li>
+         <li class="collection-item">&emsp; <a href="#">Getting started with R</a></li>
+         <li class="collection-item">&emsp; <a href="#">Coding conventions</a></li>
+         <li class="collection-item">&emsp; <a href="#">Using R for ITL</a></li>
+         <li class="collection-item">&emsp; <a href="#">Creating Shiny Apps and Notebooks</a></li>
+
+
+       </ul>
+  </div>
+
+
+
+  <div class="col m9 s9">
+    <h5 class="thin">Research and Data Governance</h5>
+
+      <strong>Guidelines for undertaking research</strong>
+      <hr/>
+      <div>
+          Having a static page to lay out guidelines for your analysts is probably a good idea. The topics listed are the kinds of things
+          you might want to have on this page.
+      </div>
+      <br/>
+
+      <h5 class="thin">Accessing data</h5>
+      <strong>Getting access</strong>
+      <hr/>
+      <div>
+          Currently being updated
+      </div>
+      <br/><strong>Accessing data via an ODBC connection in R</strong>
+      <hr/>
+      <div>
+          Currently being updated
+      </div>
+      <br/><strong>Accessing data via a REST API</strong>
+      <hr/>
+      <div>
+          Currently being updated
+      </div>
+
+      <br/><h5 class="thin">Coding resources</h5>
+      <strong>Getting started with R</strong>
+      <hr/>
+      <div>
+        The R programming language is open source, freely available, and highly to suited analytics tasks that range from descriptive statistics through to advanced machine learning. It also has wide ranging capabilities for creating interactive visualisations and camera-ready journal papers. R Studio (the IDE most commonly used to write R code) also has built in support for many languages, including SAS, Latex, C, C++, Haskell, Python, Javascript, HTML and SQL.
+
+        <br/><br/>  There are a number of excellent resources available to start learning R. <a href="https://www.datacamp.com/" target="_blank">DataCamp</a> provides a free introductory course (found <a href="https://www.datacamp.com/courses/free-introduction-to-r" target="_blank">here</a>) and there is also a getting started set of tutorials by Greg Hamel (found <a href="http://hamelg.blogspot.com/2015/10/introduction-to-r-index.html" target="_blank">here</a>. The Hamel tutorials are also available in Python using Jupyter notebooks, thus providing an opportunity to compare the differences between these two languages. Both Python and R are excellent choices for data science and it will not hurt to learn them both. If you are looking for good ways to ensure clean documentation of you code (which you should be doing!) also read through Hadley Wickham's article on <a href="https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html" target="_blank">auto-generating Rd files</a>. The maple project will also be seeking to obtain a site wide licence for <a href="https://www.datacamp.com/">DataCamp</a> which provides many data science courses in R and Python.
+
+        <br/><br/>
+          Resources can also be found on MOOC sites such as <a href="https://www.coursera.org/" target="_blank">Coursera</a> and <a href="https://www.edx.org/" target="_blank">EDx</a>. An excellent starting point is the <a href="https://www.coursera.org/specializations/jhu-data-science" target="_blank">John Hopkins University Data Science Specialisation</a>, 10 courses which cover a wide range of data science practics and feature R. There are also a number of other related Data Science courses from <a href="https://www.coursera.org/jhu" target="_blank">John Hopkins University</a> and an excellent course in mathematics for machine learning from <a href="https://www.coursera.org/specializations/mathematics-machine-learning" target="_blank">Imperial College London</a>. All courses can be audited with no cost.
+
+        <br/><br/>
+        Another excellent resource is the <a href="http://www-bcf.usc.edu/~gareth/ISL/" target="_blank">Applications of Statistical Learning</a> course by Trevor Hastie and Robert Tibshirani. This resource provides two in depth text books covering statistical and machine learning with applications in R, along with 15 hours of lectures. Note that a solid background in statistics is assumed, and concepts are explained through a statistical lens (many other Machine Learning courses tend to utilise ideas more directly from Calculus and Linear Algebra such as the one noted above). This is in invaluable resource however, and ideal to undertake after the John Hokpins courses.
+      </div>
+      <br/><strong>Coding conventions</strong>
+      <hr/>
+      <div>
+          You should adhere conventions for R as set out in the <a href="https://google.github.io/styleguide/Rguide.xml#functiondefinition" target="_blank">Google R Style Guide</a> and adopts the <a href="https://www.tidyverse.org/" target="_blank">Tidyverse</a>. These style guides include naming and documentation conventions for variables and functions, extensive information for layout and ordering of code, and commonly used libraries and idioms. Note that if you are buidling Shiny Apps and want them to be hosted on the Institute Shiny Server, they <b>must</b> conform to this style guide. You will find this is not overly onerous and that it makes life easier for everyone, and will make your code cleaner and a joy to work with!
+
+        <br/><br/>The most important aspect of writing code? Readability. This is crtical when writing code in any language and you should always code with this in mind. A great way to work on writing beautiful, clean code is to come along to the R Coders meetup group which meets weekly to pick up lots of great practices.
+      </div>
+      <br/><strong>Using R for ETL</strong>
+      <hr/>
+      <div>
+          Currently being updated
+      </div>
+      <br/><strong>Creating Shiny apps and Notebooks</strong>
+      <hr/>
+      <div>
+          Currently being updated
+      </div>
+      <br/><strong>R Coders meetup group</strong>
+      <hr/>
+      <div>
+        Having a meetup group is a way meet other developers, share your code, and explore what is happening in data science. It has broad membership, from those starting out from other languages and frameworks, and moving into data science, through to seasoned analysts working in R. Its a supportive and friendly environment and while there is an emphasis on the R language, we also explore Python, SAS and a number of other languages. Anyone is welcome to put up a topic and the kinds of things we would like to cover in 2018 are: <br/>
+        <br/>
+        <li>Getting started on building Shiny Apps.</li>
+        <li>Good code practices and CI naming conventions.</li>
+        <li>Using DPLYR for just about for any data transformation task you can think of.</li>
+        <li>A tour of the Tidyverse libraries.</li>
+        <li>RBCO templates, and building publication ready visualisations.</li>
+        <li>Creating journal ready papers in R. </li>
+        <li>Why testing and version control matters.</li>
+        <li>Using Jupyter notebooks for R, SAS, Python and more.</li>
+        <li>Why everyone is into Neural networks right now.</li>
+        <li>Data visualisation using base plotting, lattice, and ggplot2.</li>
+        <li>Using graph databases, such as Neo4J and ElasticSearch and R.</li>
+        <li>Statistics in R.</li>
+        <li>Machine learning techniques in R and Python.</li>
+        <li>Task Scheduling with R.</li>
+        <li>Setting up a industrial strength data analytics pipeline in Docker.</li>
+        <li>Using Docker to manage your data science stack.</li>
+        <li>Building insanely reactive components using D3.js.</li>
+
+        <br/>
+        <br/>
+
+      </div>
+
+
+
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}

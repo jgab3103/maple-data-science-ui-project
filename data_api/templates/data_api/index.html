@@ -1,0 +1,79 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block metadata %}
+
+<!-- <div style="background:#616161; color:white" class="light">
+This proof-of-concept request management functionality is just to show what's possible, and is not yet in scope for this project.
+</div> -->
+<div class="containesr">
+
+
+<div class="row">
+
+
+  <div class="col s1 m1">
+
+  </div>
+
+
+  <div class="col s10 m10">
+
+    <input id="myInput" placeholder="Search" id="first_name" type="text" class="validate">
+    <ul class="collection">
+      <li class="collection-item">
+        <div class="row">
+        <div class="thin col s2 m2"><strong class = "thin">Title</strong></div>
+        <div class="thin col s1 m1"><strong class = "thin">Type</strong></div>
+        <div class="thin col s1 m1"><strong class="thin">Project lead</strong></div>
+        <div class="thin col s1 m1"><strong class="thin">Version</strong></div>
+        <div class="thin col s6 m6"><strong class="thin">Description</strong></div>
+        <div class="thin col s1 m1"><strong class = "thin">Tags</strong></div>
+
+  </li>
+
+  </ul>
+
+<ul id="bob" class="collection">
+    {% for obj in apps_and_notebooks %}
+
+    <li class="collection-item">
+      <div class="row">
+      <div class="col s2 m2"><a href="#">{{ obj.title}}</a></div>
+      <div class="col s1 m1">{{ obj.type}}</div>
+      <div class="col s1 m1">{{ obj.created_by.first_name}} {{obj.created_by.last_name}}</div>
+      <div class="col s1 m1">{{ obj.version}}</div>
+      <div class="col s6 m6">{{ obj.description }}</div>
+      <div class="col s1 m1">{{ obj.tags}}</div>
+
+
+</li>
+
+    {% endfor %}
+
+  </ul>
+
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<ul id="bob" class="collection">
+
+
+ </ul>
+
+ </div>
+{% endblock %}

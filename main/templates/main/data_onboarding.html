@@ -1,0 +1,102 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<!-- <iframe
+frameborder="0"
+scrolling="no"
+class="iframe-config"
+src="http://localhost:3838/app-resources/"></iframe> -->
+<div class= "#616161 grey darken-2">
+  <div class="row #616161 grey darken-2">
+    <div class="col m12 s12">
+      <div class="row">
+        <div class="col s3 m3">
+          <div class="card #e91e63 pink">
+            <div class="card-content white-text">
+              <div class="center-align" ><strong>Person records</strong></div>
+              <span class="center-align"><h4><strong>898</strong></h4></span>
+                <div class="center-align"><i class="tiny material-icons">expand_less</i> 0% from last month</div>
+            </div>
+          </div>
+        </div>
+        <div class="col s3 m3">
+          <div class="card #42a5f5 blue lighten-1">
+            <div class="card-content white-text">
+              <div class="center-align" ><strong>Case records</strong></div>
+              <span class="center-align"><h4><strong>9809</strong></h4></span>
+                <div class="center-align"><i class="tiny material-icons">expand_less</i> 0% from last month</div>
+            </div>
+          </div>
+        </div>
+        <div class="col s3 m3">
+          <div class="card #ffca28 amber lighten-1">
+            <div class="card-content white-text">
+              <div class="center-align" ><strong>Episode records</strong></div>
+              <span class="center-align"><h4><strong>787</strong></h4></span>
+                <div class="center-align"><i class="tiny material-icons">expand_less</i> 0% from last week</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s3 m3">
+          <div class="card #4dd0e1 cyan lighten-2">
+            <div class="card-content white-text">
+              <div class="center-align" ><strong>Sub-episode records</strong></div>
+              <span class="center-align"><h4><strong>0</strong></h4></span>
+                <div class="center-align"><i class="tiny material-icons">expand_less</i>No change</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    <div class="row">
+    <div class="col s6 m6">
+      <ul class="collection with-header">
+        <li class="collection-header"><strong>Data</strong></li>
+
+
+        {% for log in logs %}
+
+
+
+        <li class="collection-item">
+
+          <div class="thin">
+            {{log.date}} &nbsp; &nbsp; {{log.message}}
+              <span class="#4caf50 green new badge" data-badge-caption="{{log.status}}"></span>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col s6 m6">
+      <div class="card white">
+        <div class="card-content white-text">
+          <div id="LineChart"></div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="row" style="margin-bottom:300px;">
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
+</div>
+
+</div>
+
+{% endblock %}

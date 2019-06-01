@@ -1,0 +1,21 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li class="{{ message.tags }}">
+    {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+    </li>
+{% endfor %}
+</ul>
+{% endif %}
+<div class="container">
+
+<div>
+<br/><br/>
+THis form has been given ID. Generally data requets take {{form}}
+</div>
+
+{% endblock %}

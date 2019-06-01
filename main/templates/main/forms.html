@@ -1,0 +1,106 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block content %}
+  <div class="container">
+
+
+
+
+<div class="row">
+ <div class="col m12 s12">
+
+ 	<h5>Forms and reports</h5>
+ 	<p>
+ 		The maple project scope includes exploring the use of online forms in order to inform the movement and archiving of information. Currently form functionality is limited to project feedback form and but forms are expected to come online after the project evaluation period. Several reports are also available for download in .csv format below. All reports are archived in HPRM on a monthly basis.
+ 	</p>
+
+ </div>
+</div>
+
+<div class="row">
+
+
+</div>
+
+<div class="row">
+  <div class = "col s12 m12">
+    <strong>Forms</strong>
+  </div>
+
+</div>
+
+  <div class="row">
+
+<!-- <div class = "col s6 m6">
+  <br/>
+	<a href="/api/data-assets/breach-form">Report a data breach</a><br/>
+
+  </div>
+
+ <div class = "col s6 m6">
+   <br/>
+   This form must be filled out if there is a suspected data breach in the Institute. You should also contact the Manager, Data Governance immediately, and provide any related documentation. The purpose of this form is to capture summary information that describes the data breach, the notification process that has taken place, document any escalation that is needed, and capture any related documentation.
+
+</div> -->
+
+<hr/>
+  <div class = "col s6 m6">
+    <br/>
+  	<a href="/feedback/feedback">Provide feedback about the project</a><br/>
+    </div>
+
+   <div class = "col s6 m6">
+     <br/>
+   A form to capture feedback related to any aspect fo this project.
+
+    </div>
+
+</div>
+
+<div class="row"><br/>
+  <div class = "col s12 m12">
+    <strong>Reporting</strong>
+  </div>
+  </div>
+<hr/>
+  <div class="row">
+
+  <div class = "col s6 m6">
+    <br/>
+    <a href="/api/data-assets/assets-report">
+      Download CSV report of all data assets</a><br/>
+    </div>
+
+   <div class = "col s6 m6">
+       <br/>
+     A list of data assets held in the metadata repository with their specifications
+    </div>
+    <div class = "col s6 m6">
+        <br/>
+      <a href="/api/data-assets/users-report">
+        Download CSV report of all data users and roles</a><br/>
+      </div>
+
+     <div class = "col s6 m6">
+         <br/>
+       A list of all current users and their roles in relation to data assets in the metadata repository.
+      </div>
+      <div class = "col s6 m6">
+        <br/>
+        <a href="/api/projects/requests-and-projects-report">
+          Download CSV report of all projects and requests</a><br/>
+        </div>
+
+       <div class = "col s6 m6">
+           <br/>
+         A list of data assets held in the metadata repository with their specifications
+        </div>
+
+
+
+
+
+</div>
+{% endblock %}

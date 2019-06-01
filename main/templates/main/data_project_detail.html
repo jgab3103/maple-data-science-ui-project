@@ -1,0 +1,220 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block metadata %}
+
+
+
+<div class="container">
+  <div class = "row">
+    <div class = "col s12 m12">
+      <br/>
+      <a href = "/maple/data-projects"class="#"><i style="color:#ff3d00;" class="material-icons left small">arrow_back</i></a><br/>
+<h5>{{ data_project.title }}</h5><br/>
+
+{{ asset.description}}
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col s12 m12">
+<h6>Project detail</h6>
+<hr/></div>
+</div>
+
+
+  <div class="row">
+    <div class = "col s6 m6">
+
+
+
+
+
+
+      <div class = "row">
+        <div class = "thin col s4 m4">
+        Research group:
+
+
+        </div>
+        <div class = "col s8 m8">
+            {% for obj in data_project.dataprojectinvestigator_set.all %}
+                <span>{{obj.investigator_name.first_name }} {{obj.investigator_name.last_name}}</span>
+                <span>({{obj.role}})</span>
+                {% if not forloop.last %}
+            <span>,</span>
+              {% endif %}
+            {% endfor %}
+
+         </div>
+      </div>
+
+
+
+      <div class = "row">
+        <div class = "thin col s4 m4">
+        Current status:
+        </div>
+        <div class = "col s8 m8">
+          {{ data_project.current_status}}
+         </div>
+      </div>
+
+
+      <div class = "row">
+        <div class = "thin col s4 m4">
+        Start date:
+        </div>
+        <div class = "col s8 m8">
+           {{ data_project.start_date }}
+         </div>
+      </div>
+
+
+      <div class = "row">
+        <div class = "thin col s4 m4">
+          End date:
+        </div>
+        <div class = "col s8 m8">
+           {{ data_project.end_date }}
+         </div>
+      </div>
+
+
+      <div class = "row">
+        <div class = "thin col s4 m4">
+        Related documentation:
+        </div>
+        <div class = "col s8 m8">
+          {{ data_project.related_documentation_location }}
+         </div>
+      </div>
+
+      <div class = "row">
+        <div class = "thin col s4 m4">
+        Working folder:
+        </div>
+        <div class = "col s8 m8">
+          {{ data_project.working_folder }}
+         </div>
+      </div>
+
+
+{% if user.is_superuser %}
+      <div class = "row">
+        <div class = "col s12 m12">
+          <strong style="font-size: 12px">
+            <a class = "modal-trigger orange-text text-darken-4" href="/admin/data_projects/dataproject/{{data_project.id}}">Admin</a>
+          </strong>
+      </div>
+      </div>
+
+      {% endif %}
+
+      <div class = "row">
+        <div class = "col s12 m12">
+          <br/><strong>Overview</strong><br/><br/>
+          <div>{{ data_project.summary | safe}}</div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class = "col s6 m6">
+{% if data_project.requiredapproval_set.all %}
+      <ul class="collapsible z-depth-0">
+        <li>
+          <div class="collapsible-header"><b>Approvals</b></div>
+
+        </li>
+
+        {%  for obj in data_project.requiredapproval_set.all %}
+
+        <li>
+          <div class="collapsible-header">
+            <div class = "col s8 m8">{{ obj.approval_from}}</div>
+            {% if obj.granted %}
+            <div class = "col s4 m4"> <strong class="green-text text-darken-2" style="font-size: 10px">Approved</strong></div>
+            {% else %}
+            <div class = "col s4 m4"> <strong class="red-text text-darken-2" style="font-size: 10px">Pending</strong></div>
+            {% endif %}
+          <br/>
+        </div>
+          <div class="collapsible-body">
+            <div class = "row">
+              <div class = "thin col s4 m4">
+              Approval ID:
+              </div>
+              <div class = "col s8 m8">
+                 {{ obj.approval_reference}}
+               </div>
+               <div class = "thin col s4 m4">
+               Approval contact:
+               </div>
+               <div class = "col s8 m8">
+                  {{ obj.approval_contact_name}}
+                </div>
+                <div class = "thin col s4 m4">
+                Approval expiry:
+                </div>
+                <div class = "col s8 m8">
+                   {{ obj.approval_end_date}}
+                 </div>
+            </div>
+
+          </div>
+        </li>
+        {% endfor %}
+
+      </ul>
+      {% endif %}
+        <ul class="collection">
+           <li class="collection-item"><strong>Project outputs</strong></li>
+
+           {% if data_project.dataprojectoutput_set.all %}
+
+             {% for obj in data_project.dataprojectoutput_set.all %}
+
+           <li class="collection-item">
+
+              <a href="/maple/data-project-output/{{obj.id}}/">{{obj.output_title}}</a>
+
+             <br/><br/>
+
+               {% for author in obj.dataprojectoutputinvestigator_set.all %}
+                  <small>{{ author.investigator_name.first_name }} {{author.investigator_name.last_name }},</small>
+               {% endfor %}
+                <br/>
+
+                {% if obj.current_status == 'Completed' %}
+                  <small>{{ obj.publication_or_conference_name }}</small>
+                  {% else %}
+                  <small>Not yet completed, due {{ obj.expected_release_date}} </small>
+                {% endif %}
+
+           </li>
+
+           {% endfor %}
+
+{% else %}
+<li class="grey-text text-darken-2 center-align" style="font-size: 10px"><br/>There are no project outputs as yet <br/><br/> </li>
+{% endif %}
+
+
+
+      </ul>
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+
+
+
+
+{% endblock %}

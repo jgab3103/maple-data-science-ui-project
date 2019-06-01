@@ -1,0 +1,60 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block metadata %}
+
+<div class="container">
+  <div class="row">
+    <div class = "col s4 m4">
+
+    </div>
+    <div class = "col s4 m4">
+<input  id="myInput" placeholder="Search" id="first_name" type="text" class="validate">
+    </div>
+
+
+  </div>
+
+<ul id="bob" class="collection">
+
+{% for app in apps_or_notebooks %}
+
+<li class="collection-item">
+  <div class="row">
+    <div class="col s4 m4">
+      <strong>{{app.title}}</strong><br/><br/>
+      <div>Created by {{app.created_by.first_name}} {{app.created_by.last_name}}</div>
+      <div>Version: {{app.version}}</div>
+      <div>Last release date {{app.release_date}}</div>
+      <br/>
+      <br/>
+    <a href = "http://localhost:3838/{{app.location}}" class="#ff3d00 deep-orange accent-3 waves-effect waves-light btn-small">View {{app.type}}</a>
+    </div>
+
+    <div class="col s8 m8">
+      <strong>Description</strong><br/>
+      {{app.description}}<br/><br/>
+
+
+
+      <strong>Tags: </strong>{{app.tags}}
+
+
+
+  </div>
+
+
+
+
+</li>
+
+
+
+
+
+{% endfor %}
+ </ul>
+
+ </div>
+{% endblock %}

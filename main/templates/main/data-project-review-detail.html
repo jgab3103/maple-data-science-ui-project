@@ -1,0 +1,177 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block metadata %}
+
+<div class="container">
+
+  <div class = "row">
+    <div class = "col s12 m12">
+      <br/>
+      <a href = "/maple/data-project-review"class="#"><i style="color:#ff3d00;" class="material-icons left small">arrow_back</i></a><br/>
+
+    </div>
+  </div>
+
+
+  <div class = "row">
+    <div class = "col s8 m8">
+
+
+<div class = "row">
+  <div class = "col s12 m12">
+<h6>Grant details</h6>
+<hr/>
+</div>
+</div>
+
+<div class="row">
+  <div class="col m6 s6">
+    <strong>Related grant ID:</strong>
+  </div>
+    <div class="col m6 s6">
+    {{ grant_review.grant_id }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col m6 s6">
+    <strong>Grant title:</strong>
+  </div>
+    <div class="col m6 s6">
+    {{ grant_review.application_title }}
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col m6 s6">
+    <strong>Grant contact name:</strong>
+  </div>
+    <div class="col m6 s6">
+    {{ grant_review.ci_prefix }} {{ grant_review.ci_name}}
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col m6 s6">
+    <strong>Administering organisation:</strong>
+  </div>
+    <div class="col m6 s6">
+    {{ grant_review.administering_organisation }}
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col m6 s6">
+    <strong>Lead organisation:</strong>
+  </div>
+    <div class="col m6 s6">
+    {{ grant_review.lead_organisation }}
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col m6 s6">
+    <strong>Current status:</strong>
+  </div>
+    <div class="col m6 s6">
+    {{ grant_review.status_of_review}}
+  </div>
+</div>
+
+
+    </div>
+
+    <div class = "col s1 m1">
+
+    </div>
+
+    <div class = "col s6 m6">
+<br/>
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+
+
+
+<div class="row">
+
+
+  <div class="col s12 m12">
+    <br/>
+
+    <h6>Reviews</h6>
+    <div>
+      <strong style="font-size: 12px">
+        <a class = "modal-trigger orange-text text-darken-4" href="/admin/data_projects/dataprojectgrantapplicationreviewerscore/add/">Add new review</a>
+      </strong>
+    </div>
+    <hr/>
+
+
+        <ul class="collection">
+          <li class="collection-item">
+            <div class="row">
+            <div class="col s2 m2"><strong class="thin">Reviewer name</strong></div>
+            <div class="col s1 m1"><strong class="thin">Significance score</strong></div>
+            <div class="col s1 m1"><strong class="thin">Team track record score</strong></div>
+            <div class="col s1 m1"><strong class="thin">Translation score</strong></div>
+              <div class="col s1 m1"><strong class="thin">sustainability score</strong></div>
+            <div class="col s6 m6"><strong class="thin">Comments</strong></div>
+
+      </li>
+
+      </ul>
+        <ul class="collection">
+
+        {% for obj in grant_review.dataprojectgrantapplicationreviewerscore_set.all %}
+
+
+            <li class="collection-item">
+              <div class="row">
+              <div class="col s2 m2">{{ obj.reviewer_name}} </div>
+              <div class="col s1 m1">{{obj.significance_score}}</div>
+              <div class="col s1 m1">  {{ obj.team_track_record_score}}</div>
+              <div class="col s1 m1">{{ obj.translation_score}}</div>
+              <div class="col s1 m1">{{ obj.sustainability_score}}</div>
+                <div class="col s6 m6">{{ obj.comments}}</div>
+
+              </div>
+              <div>
+                <strong style="font-size: 12px">
+                  <a class = "modal-trigger orange-text text-darken-4" href="/admin/data_projects/dataprojectgrantapplicationreviewerscore/{{obj.id}}/change/">Edit</a>
+                </strong>
+              </div>
+            </li>
+
+        {% endfor %}
+        </ul>
+
+  </div>
+
+
+
+
+
+
+</div>
+
+
+
+
+ </div>
+{% endblock %}

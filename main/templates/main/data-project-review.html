@@ -1,0 +1,112 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block metadata %}
+
+<div class="containesr">
+
+
+<div class="row">
+
+
+  <div class="col s1 m1">
+
+  </div>
+
+
+  <div class="col s10 m10">
+
+<input id="myInput" placeholder="Search filtered results" id="first_name" type="text" class="validate">
+
+
+    <ul id="bob" class="collection">
+    {% for obj in reviews|dictsortreversed:"total_score" %}
+
+    <li class="collection-item">
+    <div class = "row">
+      <div class = "col s8 m8">
+        <div class = "row">
+          <div  class="col s3 m3">
+            <strong class="thin">Grant ID</strong><br/>
+                          {{ obj.grant_id}}
+          </div>
+
+          <div  class="col s3 m3">
+            <strong class="thin">Grant contact name</strong><br/>
+                           {{obj.ci_prefix }} {{ obj.ci_name }}
+          </div>
+
+          <div  class="col s6 m6">
+            <strong class="thin">Application status</strong><br/>
+                           {{obj.status_of_review}}
+          </div>
+        </div>
+        <div class = "row">
+          <div  class="col s12 m12">
+            <strong class="thin">Title</strong><br/>
+                           {{obj.application_title}}
+          </div>
+        </div>
+
+      </div>
+
+      <div class = "col s3 m3">
+        <div class = "row">
+          <div class="col s8 m8">  <strong class="grey-text text-darken-2" style="font-size: 10px">Reviews completed:</strong> </div>
+          <div class="col s4 m4"><strong style="font-size: 10px">{{ obj.review_count}}</strong>  </div>
+          <div class="col s8 m8">  <strong class="grey-text text-darken-2" style="font-size: 10px">Avg. significance score score:</strong> </div>
+          <div class="col s4 m4"><strong style="font-size: 10px">  {{ obj.significance_score_avg | floatformat }}</strong>  </div>
+          <div class="col s8 m8">  <strong class="grey-text text-darken-2" style="font-size: 10px">Avg. team track record score:</strong> </div>
+          <div class="col s4 m4"><strong style="font-size: 10px">  {{ obj.team_track_record_score_avg | floatformat }}</strong>  </div>
+          <div class="col s8 m8">  <strong class="grey-text text-darken-2" style="font-size: 10px">Avg. translation score score:</strong> </div>
+          <div class="col s4 m4"><strong style="font-size: 10px">  {{ obj.translation_score_avg | floatformat  }}</strong>  </div>
+          <div class="col s8 m8">  <strong class="grey-text text-darken-2" style="font-size: 10px">Avg. sustainability score:</strong> </div>
+          <div class="col s4 m4"><strong style="font-size: 10px">  {{ obj.sustainability_score_avg | floatformat  }}</strong>  </div>
+          <div class="col s8 m8">  <strong class="grey-text text-darken-2" style="font-size: 10px">Total score:</strong> </div>
+          <div class="col s4 m4"><strong style="font-size: 10px">  {{ obj.total_score | floatformat  }}</strong>  </div>
+
+        </div>
+        <div class = "row">
+
+
+        </div>
+
+      </div>
+
+
+      <div class = "col s1 m1">
+        <div class = "row">
+            <a href="/maple/data-project-review-detail/{{obj.id}}/"><i style="color:#ff3d00;" class="material-icons small">arrow_forward</i></a>
+        </div>
+
+      </div>
+
+
+    </div>
+    </li>
+
+
+    {% endfor %}
+    </ul>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<ul id="bob" class="collection">
+
+
+ </ul>
+
+ </div>
+{% endblock %}

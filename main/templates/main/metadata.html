@@ -1,0 +1,36 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block metadata %}
+
+
+<div class="container">
+  <div class="row">
+    <div class = "col s4 m4">
+
+    </div>
+    <div class = "col s4 m4">
+      <input id="myInput" placeholder="Search" id="first_name" type="text" class="validate">
+    </div>
+  </div>
+
+<ul id="bob" class="collection">
+
+{% for asset in data_assets %}
+
+<li class="collection-item">
+  <div class="row">
+    <div class="col s12 m12">
+      <div><strong>{{asset.name}}<a href = "/maple/metadata/{{asset.id}}" class="secondary-content"><i style="color:#ff3d00;" class="material-icons left small">arrow_forward</i></a></strong></div>
+
+      <div>{{asset.owning_business_unit}}</div>
+
+    </div>
+  </div>
+</li>
+{% endfor %}
+ </ul>
+
+ </div>
+{% endblock %}

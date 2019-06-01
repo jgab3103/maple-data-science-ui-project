@@ -1,0 +1,44 @@
+{% extends "main/base.html" %}
+
+{% block breach_form %}
+
+<div class= container>
+
+  <div>
+    <br/>
+   <h6>Submit a data request</h6>
+  </div>
+  <br/>
+  <div class="thin">
+  This is a generic request form for those seeking access to to data. The most common use case is someone outside the orgnisation
+  seeking access to data in some way and providing a mechanism. In some ways this sits outside the scope of a web applicaiton that is designed to predominantly be a
+  metadata repository, however this comes up all the time. It is also a handy way to track internal requests for data, where you want to have some kind of simple layer of governance.
+  <br/>
+  <br/>
+  This request form can be extended request form can be extended easily to include other request fields, and but changing what appears in the forms.py and also make the requirements of being logged in, this
+  aims to be a simple implementation to show what is possible. Other typicial scenario would would be to allow users to choose a data asset and have the associated data elmeents they
+  which to seek, Django forms easy to extend  in this way. Also, related documentation, in systems, but it is also easy to allow users to attach and upload documentation for the requests All  of this will depend on the sisize and shape of data. I have left these decoupled, as in most organisations, seeking flexibility
+  in implementing a request system.
+  <br/>
+  <br/>
+  Lodged requests are posted as a Request into the database via the <code>views.py</code> When a request is submitted it will be assigned to a user, a request manager, again easy to configure, and
+  it is possible to create as part fo the profile, outstanding tasks
+  <br/>
+  <br/>
+  To view all requests, you can access the data <a href="/maple/data-requests">here</a>.
+  </div>
+
+
+<br/>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn-small #e65100 orange darken-4 waves-effect waves-light" type="submit" name="action">Submit
+  </button>
+</form>
+<br/><br/><br/>
+</div>
+
+
+{% endblock %}

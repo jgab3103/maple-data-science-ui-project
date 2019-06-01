@@ -1,0 +1,156 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load url_params_persist %}
+{% block metadata %}
+
+<div class="containesr">
+
+<div class = "row">
+  <div class = "col s1 m1">
+
+  </div>
+  <div class = "col s10 m10 right-align">
+
+     {% if users.has_other_pages %}
+       <ul class="pagination">
+        {% if users.has_previous %}
+          <li><a href="?{% param_replace page=users.previous_page_number %}"><i class="material-icons">chevron_left</i></a></li>
+        {% else %}
+         <li class="disabled"><i class="disabled-gray material-icons">chevron_left</i></li>
+      {% endif %}
+        {% for i in users.paginator.page_range %}
+          {% if users.number == i %}
+            <li class=" move-down active">&nbsp;{{ i }}&nbsp;</li>
+          {% else %}
+            <li><a href="?{% param_replace page=i %}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if users.has_next %}
+          <li><a href="?{% param_replace page=users.next_page_number %}"><i class="material-icons">chevron_right</i></a></li>
+        {% else %}
+          <li class="disabled"><i class="disabled-gray material-icons">chevron_right</i></li>
+        {% endif %}
+      </ul>
+      {% endif %}
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col s1 m1">
+
+  </div>
+
+  <div class="col s2 m2" xstyle="overflow-y:scroll; height:600px;">
+    <br/>
+      <strong>Data requests</strong>
+      <br/>
+
+    <div class="thin">
+    <br/>Submit a new request <a href="/maple/submit-data-request">here</a>.
+<br/>
+    </div>
+    <br/>
+  <strong>Search requests</strong>
+    <form action="" method="get">
+
+        {{ filter.form.as_p }}
+        <br/>
+        <br/>
+        <div class="col s6 m6">
+          <button class="btn-small #e65100 orange darken-4 waves-effect waves-light"  type="submit" name="action">Filter
+        </button>
+        </div>
+        <div class="col s6 m6">
+          <a class="btn btn-small #e65100 orange darken-4 waves-effect waves-light" href="{% url 'main:data_requests' %}">Reset</a>
+
+        </div>
+    </form>
+
+  </div>
+  <div class="col s8 m8">
+
+<input id="myInput" placeholder="Search filtered results" id="first_name" type="text" class="validate">
+
+
+    <ul id="bob" class="collection">
+    {% for obj in users %}
+
+
+
+
+        <li class="collection-item">
+          <div class="row">
+          <div  class="col s2 m2">
+            <strong class="thin">Date received</strong><br/>
+            {{ obj.date_received}}
+          </div>
+            <div  class="col s2 m2">
+              <strong class="thin">Request from</strong><br/>
+              {{obj.requestor_contact_name}}</div>
+            <div class="col s2 m2">
+<strong class="thin">Date type</strong><br/>
+              {{ obj.data_type}}</div>
+          <div  class="col s2 m2">
+<strong class="thin">Date due</strong><br/>
+            {{obj.date_due}}</div>
+
+
+          <div class="col s3 m3">
+            <strong class="thin">Current status</strong><br/>
+            {{obj.current_status}}</div>
+          <div class="col s1 m1">
+
+
+            <a href =  "/maple/data-requests/{{obj.id}}"class="#"><i style="color:#ff3d00;" class="material-icons small">arrow_forward</i></a>
+          </div>
+
+
+          </div>
+          <div class="row">
+            <div class = "col s8 m8">
+                <strong class = "thin">Details</strong><br/>
+                {{ obj.detail | truncatewords:30}}
+                <br/>
+
+                <strong class="grey-text text-darken-2" style="font-size: 10px">{{ obj.related_documentation}}</strong><br/>
+            </div>
+            <div  class = "col s4 m4">
+
+              {% if obj.noteortask_set.all %}
+                <strong class="thin">Tasks assigned to</strong><br/>
+              {% endif %}
+              {% for task in obj.noteortask_set.all %}
+              	{% if task.type == "Task"  %}
+              	 {% ifchanged task.allocated_to %}
+              	 	{{ task.allocated_to}}
+                  {% if task.task_completed %}
+                  (completed),
+                  {% else %}
+                  (outstanding),
+                  {% endif %}
+              	 {% endifchanged %}
+              	{% endif %}
+
+              {% endfor %}
+
+            </div>
+          </div>
+        </li>
+
+    {% endfor %}
+    </ul>
+  </div>
+
+
+
+</div>
+
+
+<ul id="bob" class="collection">
+
+
+ </ul>
+
+ </div>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Compiled and minified CSS -->
+
+     <!-- Compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+      <link rel="stylesheet" type="text/css" href="{% static 'main/vendor/materialize/css/materialize.css' %}">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified JavaScript -->
+    <!-- <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script> -->
+
+  <script src = "{% static 'main/vendor/jquery/jquery-3.3.1.js' %}"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+      <script src = "{% static 'main/vendor/materialize/js/materialize.js' %}"></script>
+    <script src = "{% static 'main/js/material-add-on.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+
+
+</head>
+
+
+<body>
+
+
+
+<header>
+<div class="navbar-fixed">
+      {% if user.is_authenticated %}
+  <ul id="dropdown1" class="dropdown-content">
+
+    <li>
+      <a href="{% url 'logout' %}"><span style="color:black;" class="thin">Logout</span></a>
+    </li>
+    <li>
+      <a href="/maple/profile"><span style="color:black;" class="thin">Profile</span></a>
+    </li>
+  </ul>
+{% endif %}
+
+
+    <nav class="nav-extended">
+      <div class="nav-wrapper #455a64 blue-grey darken-2">
+
+        <span class="#616161 grey darken-2 new badge" data-badge-caption="">beta 0.3</span>
+        <a href="/maple" class="brand-logo thin">&nbsp; &nbsp; Maple</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/maple/metadata">Metadata</a></li>
+          <li><a href="/maple/data-projects">Research and reporting streams</a></li>
+          <li><a href="/maple/apps-and-notebooks">Apps and notebooks</a></li>
+        	<li><a href="/maple/data-requests">Requests</a></li>
+          <li><a href="/maple/data-api">Data API</a></li>
+          <li><a href="/maple/resources">Resources</a></li>
+
+                    {% if user.is_authenticated %}
+                    <li>
+                      <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+                        {{ user.first_name }}  {{ user.last_name }}
+                        <i class="material-icons right">arrow_drop_down</i>
+                      </a>
+                     </li>
+                    {% else %}
+                      <li>
+                        <a href="{% url 'login' %}">Login</a>
+                      </li>
+                    {% endif %}
+
+                    <li><a href="/admin">Admin</a></li>
+        </ul>
+      </div>
+
+    </nav>
+  </header>
+
+    <ul class="sidenav" id="mobile-demo">
+            <li><a href="/maple">Home</a></li>
+      <li><a href="/maple/metadata">Metadata</a></li>
+      <li><a href="/maple/data-projects">Research and reporting streams</a></li>
+      <li><a href="/maple/apps-and-notebooks">Apps and notebooks</a></li>
+        <li><a href="/maple/data-requests">Requests</a></li>
+      <li><a href="/maple/data-api">Data API</a></li>
+      <li><a href="/maple/resources">Resources</a></li>
+    </ul>
+  </div>
+
+
+        {% block sidebar %}
+        {% endblock %}
+
+
+    <div id="content">
+        {% block content %} {% endblock %}
+        {% block about_page %}{% endblock %}
+        {% block metadata %} {% endblock %}
+        {% block breach_form %} {% endblock %}
+    </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

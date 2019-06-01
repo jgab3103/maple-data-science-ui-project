@@ -1,0 +1,154 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+
+<div class="container">
+  <div class = "row">
+    <div class = "col s12 m12">
+      <br/>
+      <h5>Profile</h5>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col m4 s4">
+      <strong class="thin">Name:</strong>
+    </div>
+    <div class="col m8 s8">
+      {{ user.first_name}} {{user.last_name}}
+    </div>
+    </div>
+    <div class = "row">
+    <div class="col m4 s4">
+      <strong class="thin">ORCID:</strong>
+    </div>
+    <div class="col m8 s8">
+      Not available
+    </div>
+  </div>
+  <div class = "row">
+    <div class="col m4 s4">
+      <strong class="thin">Researchgate ID:</strong>
+    </div>
+    <div class="col m8 s8">
+      Not available
+    </div>
+  </div>
+  <div class = "row">
+    <div class="col m4 s4">
+      <strong class="thin">Bio:</strong>
+    </div>
+    <div class="col m8 s8">
+        Not available
+    </div>
+</div>
+
+
+  <hr/>
+<div class="row">
+  <div class="col s12 m12">
+
+
+      <ul class="collapsible">
+        <li>
+          <div class="collapsible-header">Your tasks<span class="new badge" data-badge-caption="outstanding tasks">{{task_count | length}}</span></div>
+          <div class="collapsible-body">
+
+
+            <table class = "striped">
+              <thead>
+                <tr>
+                    <th class="thin">Task</th>
+                    <th class="thin">Allocated by</th>
+                    <th class ="thin">Due by</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                {% for obj in task_count %}
+                <tr>
+                  <td ><a href="/maple/data-requests/{{obj.related_request.id}}">{{obj.detail}}</a></td>
+                  <td>{{ obj.created_by.first_name }} {{ obj.created_by.last_name }}</td>
+                  <td>{{obj.date_due}}</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+
+
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">Your research and reporting streams<span class="new badge" data-badge-caption="streams">{{data_projects | length}}</span></div>
+
+
+          <div class="collapsible-body">
+
+            <table class = "striped">
+              <thead>
+                <tr>
+                    <th class="thin">Stream title</th>
+                    <th class="thin">Role</th>
+                    <th class ="thin">End date</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                {% for obj in data_projects %}
+                <tr>
+                  <td ><a href="/maple/data-projects/{{obj.data_project.id}}">{{ obj.data_project }}</a></td>
+                  <td> {{ obj.role }}</td>
+                  <td>{{obj.data_project.end_date}}</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+
+          </div>
+        </li>
+
+        <li>
+          <div class="collapsible-header">Your research project outputs<span class="new badge" data-badge-caption="outputs">{{reporting_outputs_of_user | length}}</span></div>
+
+
+
+
+          <div class="collapsible-body">
+            <table class = "striped">
+              <thead>
+                <tr>
+                    <th class="thin">Output title</th>
+                    <th class="thin">Role</th>
+                    <th class ="thin">End date</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                {% for obj in reporting_outputs_of_user %}
+                <tr>
+                  <td ><a href="/maple/data-projects/{{obj.project_output.data_project.id}}">{{obj.project_output.output_title }}</a></td>
+                  <td>{{ obj.project_output.output_type}}</td>
+                  <td>{{obj.project_output.expected_release_date}}</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+
+          </div>
+        </li>
+
+
+      </ul>
+
+
+  </div>
+</div>
+
+
+
+</div>
+{% endblock %}

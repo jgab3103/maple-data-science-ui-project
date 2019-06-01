@@ -1,0 +1,205 @@
+{% extends "main/base.html" %}
+
+{% load static %}
+
+{% block metadata %}
+
+
+<div class = "container">
+  <div class = "row">
+    <div class = "col s12 m12">
+      <br/>
+      <a href = "/maple/metadata"class="#"><i style="color:#ff3d00;" class="material-icons left small">arrow_back</i></a><br/>
+<h5>{{ asset.name }}</h5><br/>
+
+{{ asset.description}}
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col s12 m12">
+<h6>Specifications</h6>
+<hr/>
+  </div>
+  <div class = "row">
+    <div class = "col s7 m7">
+      <div class="row">
+        <div class="col m6 s6">
+          <strong>Organisation:</strong>
+        </div>
+        <div class="col m6 s6">
+          {{asset.owning_org}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m6 s6">
+          <strong>Owning business unit:</strong>
+        </div>
+          <div class="col m6 s6">
+          {{asset.owning_business_unit}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m6 s6">
+          <strong>Version:</strong>
+        </div>
+          <div class="col m6 s6">
+          {{asset.version}}
+        </div>
+      </div>
+      <div class="row">
+          <div class="col m6 s6">
+          <strong>Start date:</strong>
+        </div>
+          <div class="col m6 s6">
+          {{asset.start_date}}
+        </div>
+      </div>
+      <div class="row">
+            <div class="col m6 s6">
+          <strong>End date:</strong>
+        </div>
+          <div class="col m6 s6">
+          {{asset.end_date}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m6 s6">
+          <strong>Emergency shutdown contact:</strong>
+        </div>
+        <div class="col m6 s6">
+          {{asset.emergency_shutdown_contact}}
+        </div>
+      </div>
+      <div class="row">
+          <div class="col m6 s6">
+          <strong>Emergency shutdown org:</strong>
+        </div>
+          <div class="col m6 s6">
+          {{asset.emergency_shutdown_org}}
+        </div>
+      </div>
+      <div class="row">
+          <div class="col m6 s6">
+          <strong>Type:</strong>
+        </div>
+          <div class="col m6 s6">
+          {{asset.type}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m6 s6">
+          <strong>Data sensitivity level:</strong>
+        </div>
+          <div class="col m6 s6">
+          {{asset.data_sensitivity_level}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m6 s6">
+          <strong>Update frequency:</strong>
+        </div>
+          <div class="col m6 s6">
+          {{asset.update_frequency}}
+        </div>
+      </div>
+      <div class="row">
+          <div class="col m6 s6">
+          <strong>Currently active:</strong>
+        </div>
+          <div class="col m6 s6">
+          {{asset.currently_active}}
+        </div>
+      </div>
+      <div class="row">
+          <div class="col m6 s6">
+          <strong>Utilises external data:</strong>
+        </div>
+        <div class="col m6 s6">
+          {{asset.utlizes_external_data}}
+        </div>
+      </div>
+      <div class="row">
+          <div class="col m6 s6">
+          <strong>Governed as external data:</strong>
+        </div>
+          <div class="col m6 s6">
+          {{asset.governed_as_external_data}}
+        </div>
+      </div>
+      <div class="row">
+          <div class="col m6 s6">
+          <strong>Available for analytics:</strong>
+        </div>
+          <div class="col m6 s6">
+          {{asset.available_for_analytics}}
+        </div>
+      </div>
+      <div class="row">
+          <div class="col m6 s6">
+          <strong>Data location type:</strong>
+        </div>
+          <div class="col m6 s6">
+          {{asset.data_location_type}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m6 s6">
+          <strong>Data location:</strong>
+        </div>
+        <div class="col m6 s6">
+          {{asset.data_location}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m6 s6">
+          <strong>Supporting documentation:</strong>
+        </div>
+        <div class="col m6 s6">
+          {{asset.supporting_documentation}}
+        </div>
+      </div>
+
+    </div>
+
+    <div class = "col s5 m5">
+      <ul class="collapsible">
+        <li class="active">
+          <div class="collapsible-header"><i class="material-icons">person</i>Users and roles</div>
+          <div class="collapsible-body">
+            {% for role in asset.dataassetrole_set.all %}
+              <div class="row">
+                <div class = "col s5 m5">
+                  <strong>{{role.type}}</strong>
+                </div>
+                <div class = "col s7 m7">
+                  {{role.user.first_name }} {{role.user.last_name }}
+                </div>
+
+              </div>
+
+
+           {% endfor %}
+
+          </div>
+        </li>
+
+
+       </ul>
+    </div>
+
+    <div class = "col s12 m12">
+      <br/>
+      <br/>
+
+      <br/>
+      <br/>
+      <br/>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+{% endblock %}

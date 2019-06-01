@@ -1,0 +1,27 @@
+.iframe-config {
+	height: 3000px;
+	width: 1400px;
+}
+
+.project_background {
+	background-color: "steel-blue"
+}
+
+#text {
+	visibility: hidden;
+}
+
+
+.small-label {
+	font-size: "1px";
+
+}
+
+.move-down {
+	padding: 4px;
+	color: white;
+}
+
+.disabled-gray {
+	color: #bdbdbd;
+}

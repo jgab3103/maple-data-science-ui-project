@@ -1,0 +1,285 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block metadata %}
+
+
+<!-- MODAL 1 FOR ADDING NOTES  -->
+<div id="modal1" class="modal">
+   <div class="modal-content">
+     <h5>Add a new note</h5>
+     <form action="/maple/data-project-output-note" method="post">
+        {% csrf_token %}
+        {{ note_form }}
+         <button class="btn-small #e65100 orange darken-4 waves-effect waves-light"  type="submit" name="action">Add note
+
+       </button>
+     </form>
+   </div>
+ </div>
+
+ <!-- MODAL 2 FOR ADDING TASKS -->
+
+ <div id="modal2" class="modal">
+    <div class="modal-content">
+      <h5>Add a new task</h5>
+      <form action="/maple/answer/submit" method="post">{% csrf_token %}
+    {{ task_form }}
+          <button class="btn-small #e65100 orange darken-4 waves-effect waves-light"  type="submit" name="action">Add task
+
+        </button>
+      </form>
+    </div>
+    </div>
+
+
+    <div id="modal3" class="modal">
+       <div class="modal-content">
+         <h5>Add a new task</h5>
+         <form action="/maple/status/change" method="post">{% csrf_token %}
+       {{ updated_status_form }}
+             <button class="btn-small #e65100 orange darken-4 waves-effect waves-light"  type="submit" name="action">Change status
+
+           </button>
+         </form>
+       </div>
+       </div>
+
+
+
+    <!-- ######################################################################################################## -->
+
+<div class = "container">
+  {% if success %}
+    <h1>Your request has been submitted</h1>
+  {% else %}
+
+  {% endif %}
+
+  <div class = "row">
+    <div class = "col s12 m12">
+      <br/>
+
+      <a href = "/maple/data-projects/{{project.data_project.id}}"class="#"><i style="color:#ff3d00;" class="material-icons left small">arrow_back</i></a><br/>
+      <h5>{{project.output_title}}</h5>
+      <br/>
+      <br/>
+
+
+    </div>
+
+
+    <div class="row">
+      <div class="col m6 s6">
+        <strong class="thin">Current status:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.current_status}}
+      </div>
+      </div>
+      <div class = "row">
+
+      <div class="col m6 s6">
+        <strong class="thin">Data assets used in this output:</strong>
+      </div>
+      <div class="col m6 s6">
+        {% for obj in project.data_assets.all %}
+        {{ obj }}{% if forloop.last %} {% else %}, {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class = "row">
+      <div class="col m6 s6">
+        <strong class="thin">Related documentation:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.related_documentation}}
+      </div>
+    </div>
+    <div class = "row">
+      <div class="col m6 s6">
+        <strong class="thin">Working folder:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.working_folder}}
+      </div>
+    </div>
+    <div class = "row">
+      <div class="col m6 s6">
+        <strong class="thin">Start date:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.start_date}}
+      </div>
+    </div>
+    <div class = "row">
+      <div class="col m6 s6">
+        <strong class="thin">Output type:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.output_type}}
+      </div>
+    </div>
+    <div class = "row">
+      <div class="col m6 s6">
+        <strong class="thin">Expected release date:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.expected_release_date}}
+      </div>
+    </div>
+    <div class = "row">
+      <div class="col m6 s6">
+        <strong class="thin">PubMed ID:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.pubmed_id}}
+      </div>
+    </div>
+    <div class = "row">
+      <div class="col m6 s6">
+        <strong class="thin">Date due:</strong>
+      </div>
+      <div class="col m6 s6">
+        {{project.date_due}}
+      </div>
+    </div>
+
+
+      {% if user.is_superuser %}
+  <div class = "col s12 m12">
+    <br/>
+     <strong style="font-size: 12px">
+       <a class = "modal-trigger orange-text text-darken-4" href="/admin/data_projects/dataprojectoutput/{{project.id}}">Admin</a>
+     </strong>
+     {% endif %}
+
+
+  </div>
+  </div>
+<div class = "row">
+        <div class="col s6 m6">
+          <br/><strong>Research output summary</strong>
+          <hr/>
+          <div>
+            {{project.summary}}
+            <br/>
+
+          </div>
+</div>
+          <div class = "col s6 m6">
+            {% if project.requiredapproval_set.all %}
+            <ul class="collapsible z-depth-0">
+              <li>
+                <div class="collapsible-header"><b>Approvals</b></div>
+
+              </li>
+
+              {%  for obj in project.requiredapproval_set.all %}
+
+              <li>
+                <div class="collapsible-header">
+                  <div class = "col s8 m8">{{ obj.approval_from}}</div>
+                  {% if obj.granted %}
+                  <div class = "col s4 m4"> <strong class="green-text text-darken-2" style="font-size: 10px">Approved</strong></div>
+                  {% else %}
+                  <div class = "col s4 m4"> <strong class="red-text text-darken-2" style="font-size: 10px">Pending</strong></div>
+                  {% endif %}
+                <br/>
+              </div>
+                <div class="collapsible-body">
+                  <div class = "row">
+                    <div class = "thin col s4 m4">
+                    Approval ID:
+                    </div>
+                    <div class = "col s8 m8">
+                       {{ obj.approval_reference}}
+                     </div>
+                     <div class = "thin col s4 m4">
+                     Approval contact:
+                     </div>
+                     <div class = "col s8 m8">
+                        {{ obj.approval_contact_name}}
+                      </div>
+                      <div class = "thin col s4 m4">
+                      Approval expiry:
+                      </div>
+                      <div class = "col s8 m8">
+                         {{ obj.approval_end_date}}
+                       </div>
+                  </div>
+
+                </div>
+              </li>
+              {% endfor %}
+
+            </ul>
+            {% endif %}
+
+
+</div>
+
+
+      </div>
+
+    <div class = "row">
+      <div class = "col s12 m12">
+        <strong>Notes and Tasks</strong>
+   <hr/>
+      </div>
+          {% if user.is_superuser %}
+      <div class = "col s12 m12">
+         <strong style="font-size: 12px">
+           <a class = "modal-trigger orange-text text-darken-4" href="#modal1">Add note</a>
+         </strong>
+         {% endif %}
+        </div>
+      </div>
+
+
+<div class = "row">
+  <ul class="collection">
+    {% if project.noteortask_set.all %}
+     {% for obj in project.noteortask_set.all  %}
+      <li class="collection-item">
+       <strong class="grey-text text-darken-2" style="font-size: 11px">
+         {{ obj.created_by.first_name}} {{obj.created_by.last_name}} added a {{obj.type }} on {{ obj.date_and_time_created}}
+       </strong><br/>
+       <div>{{obj.detail}}</div>
+      {% if obj.type == "Task" %}
+      <strong class="grey-text text-darken-2" style="font-size: 11px">Allocated to {{ obj.allocated_to.first_name}} {{obj.allocated_to.last_name}}, due by {{ obj.date_due}}, and
+        {% if obj.task_completed == True %} has been completed. {% else %} not yet completed. {% endif %}
+      </strong><br/><br/>
+
+
+          {% endif %}
+
+          {% if user.is_superuser or request.user == obj.allocated_to or request.user == obj.created_by %}
+
+      <div>
+        <strong style="font-size: 12px">
+         <a href ="/maple/task-note-edit/{{obj.id}}" class = "orange-text text-darken-4">Edit</a>
+        </strong>
+      </div>
+
+
+
+
+   {% endif %}
+
+      </li>
+  {% endfor %}
+  {% else %}
+  <li class="collection-item">
+     <div>No tasks have been added to this request or project</div>
+  </li>
+ {% endif %}
+
+    </ul>
+
+</div>
+  </div>
+
+</div>
+
+
+{% endblock %}
